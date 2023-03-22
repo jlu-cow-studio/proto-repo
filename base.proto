@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package jlu_cow_studio.base;
 
-option go_package = "github.com/jlu-cow-studio/base";
+option go_package = "github.com/jlu-cow-studio/common/dao/rpc/base";
 
 message BaseReq {
     string token = 1;
