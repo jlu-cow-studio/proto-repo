@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package jlu_cow_studio.base;
+
+message BaseReq {
+    string token = 1;
+    string logid = 2;
+}
+
+message BaseRes {
+    string message = 1;
+    string code = 2;
+}
