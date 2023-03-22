@@ -1,8 +1,10 @@
 syntax = "proto3";
 
-import "./base.proto";
+import "base.proto";
 
 package jlu_cow_studio.user_core;
+
+option go_package = "jlu-cow-studio/user-core";
 
 message UserLoginReq {
     base.BaseReq base = 1;
@@ -26,7 +28,7 @@ message UserInfo {
 
 message UserRegisterReq {
     base.BaseReq base = 1;
-    Userinfo userInfo = 2;
+    UserInfo userInfo = 2;
 }
 
 message UserRegisterRes {
