@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "./base.proto";
+
+package jlu_cow_studio.user_core;
+
+message UserLoginReq {
+    base.BaseReq base = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message UserLoginRes {
+    base.BaseRes base = 1;
+    string token = 2;
+}
+
+message UserInfo {
+    string uid = 1;
+    string username = 2;
+    string password = 3;
+    string province = 4;
+    string city = 5;
+    string district = 6;
+}
+
+message UserRegisterReq {
+    base.BaseReq base = 1;
+    Userinfo userInfo = 2;
+}
+
+message UserRegisterRes {
+    base.BaseRes base = 1;
+}
+
+message UserInfoReq {
+    base.BaseReq base = 1;
+}
+
+message UserInfoRes {
+    base.BaseRes base = 1;
+    UserInfo userInfo = 2;
+}
+
+message UserAuthReq {
+    base.BaseReq base = 1;
+    int32 role = 2;
+}
+
+message UserAuthRes {
+    base.BaseRes base = 1;
+}
+
+service UserCoreService {
+    // 用户登录方法
+    rpc UserLogin(UserLoginReq) returns (UserLoginRes) {}
+
+    // 用户注册方法
+    rpc UserRegister(UserRegisterReq) returns (UserRegisterRes) {}
+
+    // 获取用户信息方法
+    rpc UserInfo(UserInfoReq) returns (UserInfoRes) {}
+
+    // 用户权限认证方法
+    rpc UserAuth(UserAuthReq) returns (UserAuthRes) {}
+}
