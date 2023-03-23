@@ -47,7 +47,7 @@ message UserInfoRes {
 
 message UserAuthReq {
     base.BaseReq base = 1;
-    int32 role = 2;
+    string role = 2;
 }
 
 message UserAuthRes {
