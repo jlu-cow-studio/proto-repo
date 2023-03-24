@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+import "base.proto";
+
+package jlu_cow_studio.product_core;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/product-core";
+
+message ItemInfo {
+    int32 item_id = 1;
+    string name = 2;
+    string description = 3;
+    string category = 4;
+    double price = 5;
+    int32 stock = 6;
+    string province = 7;
+    string city = 8;
+    string district = 9;
+    int32 user_id = 10;
+    string user_type = 11;
+    string specific_attributes = 12;
+}
+
+message AddItemReq {
+    base.BaseReq base = 1;
+    ItemInfo itemInfo = 2;
+}
+
+message AddItemRes {
+    base.BaseRes base = 1;
+    int32 item_id = 2;
+}
+
+message DeleteItemReq {
+    base.BaseReq base = 1;
+    int32 item_id = 2;
+}
+
+message DeleteItemRes {
+    base.BaseRes base = 1;
+    bool success = 2;
+}
+
+message UpdateItemReq {
+    base.BaseReq base = 1;
+    ItemInfo item = 2;
+}
+
+message UpdateItemRes {
+    base.BaseRes base = 1;
+}
+
+service ProductCoreService {
+    // 添加商品方法
+    rpc AddItem(AddItemReq) returns (AddItemRes) {}
+
+    // 删除商品方法
+    rpc DeleteItem(DeleteItemReq) returns (DeleteItemRes) {}
+
+    // 修改商品信息方法
+    rpc UpdateItem(UpdateItemReq) returns (UpdateItemRes) {}
+}
