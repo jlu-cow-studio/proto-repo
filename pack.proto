@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "base.proto";
+
+import "product_core.proto";
+
+package jlu_cow_studio.pack;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/pack";
+
+message PackItemsReq {
+    base.BaseReq base = 1;
+
+    repeated int32 item_id_list = 2;
+}
+
+message PackItemsRes{
+    base.BaseRes base = 1;
+
+    repeated product_core.ItemInfo item_list = 2;
+}
+
+service UserCoreService {
+    // 用户登录方法
+    rpc PackItems(PackItemsReq) returns (PackItemsRes) {}
+}
