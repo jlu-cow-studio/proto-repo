@@ -20,7 +20,7 @@ message PackItemsRes{
     repeated product_core.ItemInfo item_list = 2;
 }
 
-service UserCoreService {
+service PackService {
     // 用户登录方法
     rpc PackItems(PackItemsReq) returns (PackItemsRes) {}
 }

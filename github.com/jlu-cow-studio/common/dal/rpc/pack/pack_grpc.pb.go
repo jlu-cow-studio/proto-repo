@@ -18,88 +18,88 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// UserCoreServiceClient is the client API for UserCoreService service.
+// PackServiceClient is the client API for PackService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserCoreServiceClient interface {
+type PackServiceClient interface {
 	// 用户登录方法
 	PackItems(ctx context.Context, in *PackItemsReq, opts ...grpc.CallOption) (*PackItemsRes, error)
 }
 
-type userCoreServiceClient struct {
+type packServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserCoreServiceClient(cc grpc.ClientConnInterface) UserCoreServiceClient {
-	return &userCoreServiceClient{cc}
+func NewPackServiceClient(cc grpc.ClientConnInterface) PackServiceClient {
+	return &packServiceClient{cc}
 }
 
-func (c *userCoreServiceClient) PackItems(ctx context.Context, in *PackItemsReq, opts ...grpc.CallOption) (*PackItemsRes, error) {
+func (c *packServiceClient) PackItems(ctx context.Context, in *PackItemsReq, opts ...grpc.CallOption) (*PackItemsRes, error) {
 	out := new(PackItemsRes)
-	err := c.cc.Invoke(ctx, "/jlu_cow_studio.pack.UserCoreService/PackItems", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/jlu_cow_studio.pack.PackService/PackItems", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserCoreServiceServer is the server API for UserCoreService service.
-// All implementations must embed UnimplementedUserCoreServiceServer
+// PackServiceServer is the server API for PackService service.
+// All implementations must embed UnimplementedPackServiceServer
 // for forward compatibility
-type UserCoreServiceServer interface {
+type PackServiceServer interface {
 	// 用户登录方法
 	PackItems(context.Context, *PackItemsReq) (*PackItemsRes, error)
-	mustEmbedUnimplementedUserCoreServiceServer()
+	mustEmbedUnimplementedPackServiceServer()
 }
 
-// UnimplementedUserCoreServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedUserCoreServiceServer struct {
+// UnimplementedPackServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedPackServiceServer struct {
 }
 
-func (UnimplementedUserCoreServiceServer) PackItems(context.Context, *PackItemsReq) (*PackItemsRes, error) {
+func (UnimplementedPackServiceServer) PackItems(context.Context, *PackItemsReq) (*PackItemsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PackItems not implemented")
 }
-func (UnimplementedUserCoreServiceServer) mustEmbedUnimplementedUserCoreServiceServer() {}
+func (UnimplementedPackServiceServer) mustEmbedUnimplementedPackServiceServer() {}
 
-// UnsafeUserCoreServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserCoreServiceServer will
+// UnsafePackServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PackServiceServer will
 // result in compilation errors.
-type UnsafeUserCoreServiceServer interface {
-	mustEmbedUnimplementedUserCoreServiceServer()
+type UnsafePackServiceServer interface {
+	mustEmbedUnimplementedPackServiceServer()
 }
 
-func RegisterUserCoreServiceServer(s grpc.ServiceRegistrar, srv UserCoreServiceServer) {
-	s.RegisterService(&UserCoreService_ServiceDesc, srv)
+func RegisterPackServiceServer(s grpc.ServiceRegistrar, srv PackServiceServer) {
+	s.RegisterService(&PackService_ServiceDesc, srv)
 }
 
-func _UserCoreService_PackItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PackService_PackItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PackItemsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserCoreServiceServer).PackItems(ctx, in)
+		return srv.(PackServiceServer).PackItems(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/jlu_cow_studio.pack.UserCoreService/PackItems",
+		FullMethod: "/jlu_cow_studio.pack.PackService/PackItems",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserCoreServiceServer).PackItems(ctx, req.(*PackItemsReq))
+		return srv.(PackServiceServer).PackItems(ctx, req.(*PackItemsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserCoreService_ServiceDesc is the grpc.ServiceDesc for UserCoreService service.
+// PackService_ServiceDesc is the grpc.ServiceDesc for PackService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserCoreService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "jlu_cow_studio.pack.UserCoreService",
-	HandlerType: (*UserCoreServiceServer)(nil),
+var PackService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "jlu_cow_studio.pack.PackService",
+	HandlerType: (*PackServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "PackItems",
-			Handler:    _UserCoreService_PackItems_Handler,
+			Handler:    _PackService_PackItems_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
