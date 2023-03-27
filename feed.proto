@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "base.proto";
+
+import "product_core.proto";
+
+package jlu_cow_studio.feed;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/feed_service";
+
+message GetFeedRequest {
+    base.BaseReq base = 1;
+    string scene = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
+
+message GetFeedResponse {
+    base.BaseRes base = 1;
+    repeated jlu_cow_studio.product_core.ItemInfo items = 2;
+    PaginationInfo pagination = 3;
+}
+
+message ResetFeedRequest {
+    base.BaseReq base = 1;
+    string scene = 2;
+}
+
+message ResetFeedResponse {
+    base.BaseRes base = 1;
+}
+
+message PaginationInfo {
+    int32 total_items = 1;
+    int32 total_pages = 2;
+    int32 current_page = 3;
+    int32 items_per_page = 4;
+}
+
+service FeedService {
+    rpc GetFeed(GetFeedRequest) returns (GetFeedResponse);
+    rpc ResetFeed(ResetFeedRequest) returns (ResetFeedResponse);
+}
