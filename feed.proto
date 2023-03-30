@@ -26,7 +26,7 @@ message ItemForFeed {
     string ucity = 17;
     string udistrict = 18;
     string urole = 19;
-  }
+}
 
 message GetFeedRequest {
     base.BaseReq base = 1;
