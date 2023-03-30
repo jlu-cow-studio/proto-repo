@@ -2,11 +2,31 @@ syntax = "proto3";
 
 import "base.proto";
 
-import "product_core.proto";
-
 package jlu_cow_studio.feed;
 
 option go_package = "github.com/jlu-cow-studio/common/dal/rpc/feed_service";
+
+message ItemForFeed {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    string category = 4;
+    double price = 5;
+    int32 stock = 6;
+    string province = 7;
+    string city = 8;
+    string district = 9;
+    string image_url = 10;
+    int32 user_id = 11;
+    string user_type = 12;
+    string specific_attributes = 13;
+    int32 uid = 14;
+    string username = 15;
+    string uprovince = 16;
+    string ucity = 17;
+    string udistrict = 18;
+    string urole = 19;
+  }
 
 message GetFeedRequest {
     base.BaseReq base = 1;
@@ -17,7 +37,7 @@ message GetFeedRequest {
 
 message GetFeedResponse {
     base.BaseRes base = 1;
-    repeated jlu_cow_studio.product_core.ItemInfo items = 2;
+    repeated ItemForFeed items = 2;
     PaginationInfo pagination = 3;
 }
 
