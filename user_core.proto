@@ -54,6 +54,57 @@ message UserAuthRes {
     base.BaseRes base = 1;
 }
 
+message FollowReq {
+    base.BaseReq base = 1;
+    int32 follower_id = 2;
+    int32 following_id = 3;
+    string action = 4;
+}
+
+message FollowRes {
+    base.BaseRes base = 1;
+    bool success = 2;
+}
+
+message FollowingReq {
+    base.BaseReq base = 1;
+    int32 user_id = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
+
+message FollowingRes {
+    base.BaseRes base = 1;
+    int32 total_count = 2;
+    int32 total_page = 3;
+    repeated UserInfo users = 4;
+}
+
+message FollowersReq {
+    base.BaseReq base = 1;
+    int32 user_id = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+}
+
+message FollowersRes {
+    base.BaseRes base = 1;
+    int32 total_count = 2;
+    int32 total_page = 3;
+    repeated UserInfo users = 4;
+}
+
+message FollowCountReq {
+    base.BaseReq base = 1;
+    int32 user_id = 2;
+}
+
+message FollowCountRes {
+    base.BaseRes base = 1;
+    int32 following_count = 2;
+    int32 follower_count = 3;
+}
+
 service UserCoreService {
     // 用户登录方法
     rpc UserLogin(UserLoginReq) returns (UserLoginRes) {}
@@ -66,4 +117,16 @@ service UserCoreService {
 
     // 用户权限认证方法
     rpc UserAuth(UserAuthReq) returns (UserAuthRes) {}
+
+    // 关注/取消关注方法
+    rpc Follow(FollowReq) returns (FollowRes) {}
+
+    // 查看关注列表方法
+    rpc Following(FollowingReq) returns (FollowingRes) {}
+
+    // 查看关注我的列表方法
+    rpc Followers(FollowersReq) returns (FollowersRes) {}
+
+    // 查看关注数和粉丝数方法
+    rpc FollowCount(FollowCountReq) returns (FollowCountRes) {}
 }
