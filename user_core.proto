@@ -56,19 +56,18 @@ message UserAuthRes {
 
 message FollowReq {
     base.BaseReq base = 1;
-    int32 follower_id = 2;
-    int32 following_id = 3;
+    string follower_id = 2;
+    string following_id = 3;
     string action = 4;
 }
 
 message FollowRes {
     base.BaseRes base = 1;
-    bool success = 2;
 }
 
 message FollowingReq {
     base.BaseReq base = 1;
-    int32 user_id = 2;
+    string user_id = 2;
     int32 page = 3;
     int32 page_size = 4;
 }
@@ -82,7 +81,7 @@ message FollowingRes {
 
 message FollowersReq {
     base.BaseReq base = 1;
-    int32 user_id = 2;
+    string user_id = 2;
     int32 page = 3;
     int32 page_size = 4;
 }
@@ -96,7 +95,7 @@ message FollowersRes {
 
 message FollowCountReq {
     base.BaseReq base = 1;
-    int32 user_id = 2;
+    string user_id = 2;
 }
 
 message FollowCountRes {
