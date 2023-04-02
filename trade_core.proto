@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "base.proto";
+
+package jlu_cow_studio.trade_core;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/trade_core";
+
+message RechargeRequest{
+    base.BaseReq base = 1;
+}
+
+message RechargeResponse{
+    base.BaseRes base = 1;
+}
+
+service FeedService {
+    rpc Recharge(RechargeRequest) returns (RechargeResponse);
+}
