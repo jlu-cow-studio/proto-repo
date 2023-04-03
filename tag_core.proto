@@ -45,7 +45,53 @@ message GetTagListBySceneResponse{
     repeated TagCategoryWithList list = 2;
 }
 
+message GetTagListByItemRequest{
+    base.BaseReq base = 1;
+    string item_id = 2;
+}
+
+message GetTagListByItemResponse{
+    base.BaseRes base = 1;
+    repeated Tag tag_list = 2;
+}
+
+message GetTagListByUserRequest{
+    base.BaseReq base = 1;
+    string user_id = 2;
+}
+
+message GetTagListByUserResponse{
+    base.BaseRes base = 1;
+    repeated Tag tag_list = 2;
+}
+
+message UpdateItemTagsRequest{
+    base.BaseReq base = 1;
+    string item_id = 2;
+    repeated string tag_list = 3;
+}
+
+message UpdateItemTagsResponse{
+    base.BaseRes base = 1;
+}
+
+message UpdateUserTagsRequest {
+    base.BaseReq base = 1;
+    string user_id = 2;
+    repeated string tag_list = 3;
+}
+
+message UpdateUserTagsResponse{
+    base.BaseRes base = 1;
+}
+
 service TagCoreService {
 
     rpc GetTagListByScene(GetTagListBySceneRequest) returns(GetTagListBySceneResponse);
+
+    rpc GetTagListByItem(GetTagListByItemRequest) returns(GetTagListByItemResponse);
+    rpc GetTagListByUser(GetTagListByUserRequest) returns(GetTagListByUserResponse);
+    rpc UpdateItemTags(UpdateItemTagsRequest) returns(UpdateItemTagsResponse);
+    rpc UpdateUserTags(UpdateUserTagsRequest) returns(UpdateUserTagsResponse);
+
 }
