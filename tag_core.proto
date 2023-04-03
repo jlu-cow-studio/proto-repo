@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "base.proto";
+
+package jlu_cow_studio.tag_core;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/tag_core";
+
+message Tag {
+    int64 id = 1;
+    string name = 2;
+    double weight = 3;
+    string mark_object = 4;
+    int64 category_id = 5;
+}
+    
+message TagWithCategory {
+    int64 id = 1;
+    string name = 2;
+    double weight = 3;
+    string mark_object = 4;
+    int64 category_id = 5;
+    TagCategory category = 6;
+}
+    
+message TagCategory {
+    int32 id = 1;
+    string name = 2;
+    int32 parent_id = 3;
+    int32 level = 4;
+}
+    
+message TagCategoryWithList {
+    TagCategory category = 1;
+    repeated Tag tag_list = 2;
+}
+
+message GetTagListBySceneRequest{
+    base.BaseReq base = 1;
+    string scene = 2;
+}
+
+message GetTagListBySceneResponse{
+    base.BaseRes base = 1;
+    repeated TagCategoryWithList list = 2;
+}
+
+service TagCoreService {
+
+    rpc GetTagListByScene(GetTagListBySceneRequest) returns(GetTagListBySceneResponse);
+}
