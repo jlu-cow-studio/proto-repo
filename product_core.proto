@@ -2,6 +2,8 @@ syntax = "proto3";
 
 import "base.proto";
 
+import "tag_core.proto";
+
 package jlu_cow_studio.product_core;
 
 option go_package = "github.com/jlu-cow-studio/common/dal/rpc/product_core";
@@ -25,6 +27,7 @@ message ItemInfo {
 message AddItemReq {
     base.BaseReq base = 1;
     ItemInfo itemInfo = 2;
+    repeated tag_core.Tag tag_list = 3;
 }
 
 message AddItemRes {
@@ -44,6 +47,7 @@ message DeleteItemRes {
 message UpdateItemReq {
     base.BaseReq base = 1;
     ItemInfo item = 2;
+    repeated tag_core.Tag tag_list = 3;
 }
 
 message UpdateItemRes {
