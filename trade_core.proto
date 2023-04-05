@@ -50,7 +50,7 @@ message OrderListResponse{
     repeated OrderForList order_list = 2;
 }
 
-service TreadeCoreService {
+service TradeCoreService {
     rpc Recharge(RechargeRequest) returns (RechargeResponse);
     rpc Order(OrderRequest) returns (OrderResponse);
     rpc OrderList(OrderListRequest) returns (OrderListResponse);
