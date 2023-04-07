@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "base.proto";
+
+package jlu_cow_studio.data_collector;
+
+option go_package = "github.com/jlu-cow-studio/common/dal/rpc/data_collector";
+
+message TrackingReportReq{
+    base.BaseReq base = 1;
+    int32 item_id = 2;
+    string behavior = 3;
+}
+
+message TrackingReportRes{
+    base.BaseRes base = 1;
+}
+
+message ViewingDurationReq{
+    base.BaseReq base = 1;
+    int32 item_id = 2;
+    int64 duration = 3;
+}
+
+message ViewingDurationRes{
+    base.BaseRes base = 1;
+}
+
+service DataCollectorService {
+
+    //埋点上报
+    rpc TrackingReport(TrackingReportReq) returns(TrackingReportRes);
+
+    //浏览时长上报
+    rpc ViewingDuration(ViewingDurationReq) returns(ViewingDurationRes);
+}
