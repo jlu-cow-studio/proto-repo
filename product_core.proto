@@ -52,6 +52,16 @@ message UpdateItemRes {
     base.BaseRes base = 1;
 }
 
+message AddFavoriteReq{
+    base.BaseReq base = 1;
+    int32 item_id = 2;
+    string action = 3;
+}
+
+message AddFavoriteRes{
+    base.BaseRes base = 1;
+}
+
 service ProductCoreService {
     // 添加商品方法
     rpc AddItem(AddItemReq) returns (AddItemRes) {}
@@ -61,4 +71,7 @@ service ProductCoreService {
 
     // 修改商品信息方法
     rpc UpdateItem(UpdateItemReq) returns (UpdateItemRes) {}
+
+    //商品种草
+    rpc AddFavorite(AddFavoriteReq) returns (AddFavoriteRes) {}
 }
